@@ -13,9 +13,10 @@
 <script>
     var socket = io('http://localhost:5000');
     socket.on('greeting-from-server', function (message) {
-        document.body.appendChild(
-            document.createTextNode(message.greeting)
-        );
+        console.log(message);
+        // document.body.appendChild(
+        //     document.createTextNode(message.name)
+        // );
     });
 
     function sendMsg(){
@@ -27,6 +28,7 @@
             socket.emit('greeting-from-client', {
                 payload
             });
+            alert("Hello "+ payload.name)
             console.log("Incoming event [ping] >>> " + JSON.stringify(payload));
             console.log("Outgoing event [pong] >>> " + JSON.stringify(payload));
         }

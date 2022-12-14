@@ -4,7 +4,7 @@ var express = require('express'),
     socketIO = require('socket.io'),
     server, io;
 
-console.log("listening on *:3000");
+console.log("listening on *:5000");
 console.log("  a user connected");
 
 
