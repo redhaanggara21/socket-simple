@@ -22,13 +22,13 @@
     function sendMsg(){
         let input = document.getElementById("msg").value;
         if(input === ""){
-            alert("Hello Anonymous");
+            alert("Hello Anonymous!");
         }else{
             var payload = { name: input };
             socket.emit('greeting-from-client', {
                 payload
             });
-            alert("Hello "+ payload.name)
+            alert("Hello "+ payload.name+"!")
             console.log("Incoming event [ping] >>> " + JSON.stringify(payload));
             console.log("Outgoing event [pong] >>> " + JSON.stringify(payload));
         }
