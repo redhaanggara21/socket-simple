@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<script src="/socket.io/socket.io.js"></script>
+
+<div style="width: 500px">
+    <input type="text" id="msg" placeholder="input your name here"/>
+    <input type="button" id="sendBtn" onclick="sendMsg()" value="Say Hello!" />
+</div>
+
+<script>
+    var socket = io('http://localhost:5000');
+    socket.on('greeting-from-server', function (message) {
+        document.body.appendChild(
+            document.createTextNode(message.greeting)
+        );
+    });
+
+    function sendMsg(){
+        let input = document.getElementById("msg").value;
+        if(input === ""){
+            alert("Hello Anonymous");
+        }else{
+            var payload = { name: input };
+            socket.emit('greeting-from-client', {
+                payload
+            });
+            console.log("Incoming event [ping] >>> " + JSON.stringify(payload));
+            console.log("Outgoing event [pong] >>> " + JSON.stringify(payload));
+        }
+    }
+
+</script>
+</body>
+</html>
